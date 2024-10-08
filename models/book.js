@@ -5,10 +5,14 @@ const bookSchema = new Schema({
 
     summary: {type: String, required: true},
 
-    author: {type: Types.ObjectId, ref: 'Author'},
+    author: {type: String, required: true},
 
-    publishedYear:{type: String, required: true},
+    publishedYear:{type: Number, required: true},
 
 });
 
 export const BookModel = model('Book', bookSchema);
+
+
+// this is just to push
+
