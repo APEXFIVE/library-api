@@ -6,7 +6,7 @@ import authorRouter from './routes/author.js';
 import reviewRouter from './routes/review.js';
 
 // connect to database
-
+await mongoose.connect(process.env.MONGO_URI);
 
 
 // create a library express app
@@ -26,3 +26,4 @@ app.use(reviewRouter);
 app.listen(3055, () => {
     console.log('App is listening on port 3055');
 });
+
