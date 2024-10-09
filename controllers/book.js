@@ -20,7 +20,7 @@
 //     res.status(200).json("Book was deleted");
 // }
 
-
+import { addBookValidator } from "../validators/book.js";
 import { BookModel } from "../models/book.js";
 
 // Add a new book
@@ -29,6 +29,10 @@ export const addBook = async (req, res, next) => {
         const newBook = new BookModel(req.body);
         const savedBook = await newBook.save();
         res.status(201).json(savedBook);
+        const {error,value} = addBookValidator.validate(req.body);
+        if (error){
+            return res.status(404).json(error);
+        }
     } catch (error) {
         next(error);
     }
