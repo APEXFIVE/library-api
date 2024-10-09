@@ -23,7 +23,7 @@ export const getAllAuthors = async(req, res, next) => {
 export const getOneAuthor = async (req, res, next) => {
    try {
      // fetch author by id
-     const author = await AuthorModel.findById();
+     const author = await AuthorModel.findById(req.params.id);
      // return response
      res.status(200).json(author);
    } catch (error) {
@@ -33,7 +33,7 @@ export const getOneAuthor = async (req, res, next) => {
 export const UpdateAuthor = async (req, res, next) => {
   try {
       // 
-      const authorUpdate = await AuthorModel.findByIdAndUpdate();
+      const authorUpdate = await AuthorModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
       //  
       res.status(200).json(authorUpdate);
   } catch (error) {
@@ -43,7 +43,7 @@ export const UpdateAuthor = async (req, res, next) => {
 export const deleteAuthor = async (req, res, next) => {
    try {
      // 
-     const authorDelete = await AuthorModel.findByIdAndDelete();
+     const authorDelete = await AuthorModel.findByIdAndDelete(req.params.id);
      // 
      res.status(200).json(authorDelete);
    } catch (error) {
