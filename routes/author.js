@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { addAuthor, deleteAuthor, getAllAuthors, getOneAuthor, UpdateAuthor } from "../controllers/author.js";
+import { addAuthorValidator } from "../validators/author.js";
 
 // create router
 const authorRouter = Router();

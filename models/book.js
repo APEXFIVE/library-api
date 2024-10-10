@@ -1,3 +1,4 @@
+import Joi from "joi";
 import { Schema, Types, model } from "mongoose";
 
 const bookSchema = new Schema({
@@ -8,6 +9,10 @@ const bookSchema = new Schema({
     author: {type: String, required: true},
 
     publishedYear:{type: Number, required: true},
+
+    genre: {type: String, required: true},
+
+    cover: {type: String, required:false},
 
 });
 
