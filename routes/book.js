@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { addBook, deleteBook, getAllBooks, getOneBook, updateBook } from "../controllers/book.js";
+import { addBookValidator, updateBookValidator } from "../validators/book.js";
 
 
 // create router here

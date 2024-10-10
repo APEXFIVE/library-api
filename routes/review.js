@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { addReview, deleteReview, getAllReviews, getOneReview, updateReview } from "../controllers/review.js";
+import { addReviewValidator } from "../validators/review.js";
 
 
 // create router

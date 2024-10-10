@@ -1,10 +1,15 @@
 import { ReviewModel } from "../models/review.js";
+import { addReviewValidator, updateReviewValidator } from "../validators/review.js";
 
 export const addReview = async (req, res, next) => {
  try {
        // validate user inputs
+       const {error,value} = addReviewValidator.validate(req.body);
+       if (error){
+           return res.status(422).json(error);
+       }
        // write to DB
-       await ReviewModel.create(req.body);
+       await ReviewModel.create(value);
        // respond to request
        res.status(201).json('Review was created');
  } catch (error) {
@@ -37,6 +42,10 @@ export const getOneReview = async (req, res, next) => {
 export const updateReview = async (req, res, next) => {
    try {
      // 
+     const {error,value} = updateReviewValidator.validate(req.body);
+     if (error){
+         return res.status(422).json(error);
+     }
      const reviewUpdate = await ReviewModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
      // 
      res.status(200).json(reviewUpdate);

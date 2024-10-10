@@ -20,19 +20,21 @@
 //     res.status(200).json("Book was deleted");
 // }
 
-import { addBookValidator } from "../validators/book.js";
+import { addBookValidator, updateBookValidator } from "../validators/book.js";
 import { BookModel } from "../models/book.js";
 
 // Add a new book
 export const addBook = async (req, res, next) => {
     try {
-        const newBook = new BookModel(req.body);
-        const savedBook = await newBook.save();
-        res.status(201).json(savedBook);
         const {error,value} = addBookValidator.validate(req.body);
         if (error){
-            return res.status(404).json(error);
+            return res.status(422).json(error);
         }
+        await  BookModel.create(value);
+        // const {error,value} = addBookValidator.validate(req.body);
+        // const savedBook = await newBook.save();
+        res.status(201).json(savedBook);
+       
     } catch (error) {
         next(error);
     }
@@ -64,6 +66,11 @@ export const getOneBook = async (req, res, next) => {
 // Update a book by ID
 export const updateBook = async (req, res, next) => {
     try {
+        // validation is added here
+        const {error,value} = updateBookValidator.validate(req.body);
+        if (error){
+            return res.status(422).json(error);
+        }
         const updatedBook = await BookModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!updatedBook) {
             return res.status(404).json({ message: "Book not found" });
