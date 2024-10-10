@@ -30,10 +30,10 @@ export const addBook = async (req, res, next) => {
         if (error){
             return res.status(422).json(error);
         }
-        await  BookModel.create(value);
+        const addBooks = await  BookModel.create(value);
         // const {error,value} = addBookValidator.validate(req.body);
         // const savedBook = await newBook.save();
-        res.status(201).json(savedBook);
+        res.status(201).json(addBooks);
        
     } catch (error) {
         next(error);
