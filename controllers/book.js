@@ -85,7 +85,20 @@ export const deleteBook = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+
 };
+
+// export const addBulkBook = async (req, res, next) => {
+//     try {
+//         const books = req.body;  // assuming the body contains an array of books
+//         const insertedBooks = await BookModel.insertMany(books);
+//         res.status(201).json(insertedBooks);
+//     } catch (error) {
+//        next(error);
+//         res.status(400).json({ message: 'Error inserting books', error });
+//     }
+// };
+
 
 
 // here is here

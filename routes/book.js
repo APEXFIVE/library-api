@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { addBook, deleteBook, getAllBooks, getOneBook, updateBook } from "../controllers/book.js";
+import { addBook, /*addBulkBook,*/ deleteBook, getAllBooks, getOneBook, updateBook } from "../controllers/book.js";
+import { BookModel } from "../models/book.js";
 
 
 // create router here
@@ -15,6 +16,8 @@ libraryRouter.get("/books/:id", getOneBook);
 libraryRouter.patch("/books/:id", updateBook);
 
 libraryRouter.delete("/books/:id", deleteBook);
+
+// libraryRouter.post('/bulk', addBulkBook);
 
 // Export router
 export default libraryRouter;
